@@ -1,0 +1,84 @@
+<!-- Display the countdown timer in an element -->
+<html>
+
+<head>
+  <title>Bienvenue Phil 🙏</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+</head>
+
+<style>
+  p {
+    text-align: center;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    width: 99%;
+  }
+
+  #content {
+    display: none;
+  }
+</style>
+
+<body>
+  <div id="content">
+    <p>No, it is not chalet time yet 😔 Next Chalet is in :</p>
+    <p id="demo"></p>
+    <p>🙏</p>
+  </div>
+  <p class="footer">Copyright BàV Software inc.</p>
+</body>
+
+<script>
+  Swal.fire({
+    title: '',
+    text: "Are you LP, Claudia or PL!",
+    type: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'No'
+  }).then((result) => {
+    if (result.value) {
+      window.open('', '_self').close()
+    } else {
+      document.querySelector("#content").style.display = "block";
+    }
+  });
+
+  var countDownDate = new Date("May 1, 2022 13:37:37").getTime();
+  count();
+  // Update the count down every 1 second
+  var x = setInterval(count, 1000);
+
+  function count() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+  }
+</script>
+
+</html>
